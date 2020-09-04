@@ -1,1 +1,3 @@
-/* base css */
+body {
+  @apply bg-white text-gray-800;
+}
