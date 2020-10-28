@@ -2,14 +2,14 @@ import useSWR from 'swr';
 
 import Layout from 'components/Layout';
 
-const TopRatedTvShowsPage = () => {
+const TopRatedMoviesPage = () => {
   return (
     <Layout>
       <div className="flex items-center justify-between my-5">
-        <h1 className="text-xl">Top Rated Tv Shows</h1>
+        <h1 className="text-xl">Top Rated Movies</h1>
       </div>
     </Layout>
   );
 };
 
-export default TopRatedTvShowsPage;
+export default TopRatedMoviesPage;
