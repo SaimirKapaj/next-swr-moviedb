@@ -1,24 +1,17 @@
-import { useState } from 'react';
 import Icon from 'components/Icon/Icon';
-import Logo from './Logo';
 import Nav from './Nav/Nav';
 
 const Header = () => {
-  const [openNav, setOpenNav] = useState(false);
-
   return (
-    <div className="flex items-center justify-between px-4 md:px-8 py-4">
-      <Nav open={openNav} close={() => setOpenNav(false)} />
-      <div className="cursor-pointer" onClick={() => setOpenNav(true)}>
-        <Icon name="menu" className="w-6" />
+    <header className="border-b border-gray-300">
+      <div className="flex items-center justify-between px-4 md:px-8 py-6">
+        <Nav />
+        <button className="cursor-pointer flex items-center p-2 px-3 border border-gray-300 bg-gray-100 rounded-full focus:outline-none sm:w-64 w-full">
+          <Icon name="search" className="w-5 mr-2" />
+          <span className="text-gray-600">Search</span>
+        </button>
       </div>
-      <div className="text-center">
-        <Logo />
-      </div>
-      <div className="cursor-pointer">
-        <Icon name="search" className="w-6" />
-      </div>
-    </div>
+    </header>
   );
 };
 
