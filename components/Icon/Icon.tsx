@@ -1,4 +1,4 @@
-export type IconType = 'menu' | 'search' | 'cross' | 'home' | 'movies' | 'tv' | 'people';
+export type IconType = 'menu' | 'search' | 'cross' | 'plus' | 'home' | 'movies' | 'tv' | 'people';
 
 interface Props {
   name: IconType;
@@ -19,6 +19,11 @@ const icons: { [key in IconType] } = {
   cross: (styles) => (
     <svg fill="currentColor" viewBox="0 0 20 20" className={styles}>
       <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
+    </svg>
+  ),
+  plus: (styles) => (
+    <svg fill="currentColor" viewBox="0 0 384 512" className={styles}>
+      <path d="M376 232H216V72c0-4.42-3.58-8-8-8h-32c-4.42 0-8 3.58-8 8v160H8c-4.42 0-8 3.58-8 8v32c0 4.42 3.58 8 8 8h160v160c0 4.42 3.58 8 8 8h32c4.42 0 8-3.58 8-8V280h160c4.42 0 8-3.58 8-8v-32c0-4.42-3.58-8-8-8z"></path>{' '}
     </svg>
   ),
   home: (styles) => (
