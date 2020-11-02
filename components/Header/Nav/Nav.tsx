@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Icon from 'components/Icon';
 import { IconType } from 'components/Icon';
+import { useRouter } from 'next/router';
 
 interface NavItem {
   title: string;
@@ -11,12 +12,12 @@ interface NavItem {
 const navItems: NavItem[] = [
   {
     title: 'Movies',
-    slug: '/movies',
+    slug: '/movie',
     icon: 'movies'
   },
   {
     title: 'Tv Shows',
-    slug: '/tv-shows',
+    slug: '/tv',
     icon: 'tv'
   },
   {
@@ -27,12 +28,18 @@ const navItems: NavItem[] = [
 ];
 
 const Nav = () => {
+  const { pathname } = useRouter();
+
   return (
-    <nav className="flex fixed bottom-0 left-0 bg-white z-50 p-4 w-full justify-between border-t border-gray-400 sm:relative sm:border-0 sm:justify-start sm:p-0">
+    <nav className="flex fixed bottom-0 left-0 bg-white z-50 p-4 w-full justify-between border-t border-gray-400 sm:w-auto sm:relative sm:border-0 sm:justify-start sm:p-0">
       {navItems.map((item) => (
         <div key={item.title}>
           <Link href={item.slug}>
-            <a className="flex flex-col justify-end items-center hover:text-red-600 sm:text-xl sm:mr-6 sm:flex-row sm:justify-center">
+            <a
+              className={`flex flex-col justify-end items-center hover:text-teal-600 sm:text-xl sm:mr-6 sm:flex-row sm:justify-center ${
+                pathname.includes(item.slug) && 'text-teal-600'
+              }`}
+            >
               <Icon name={item.icon} className="w-5 mb-1 h-5 sm:mr-2 sm:mb-0" />
               <span>{item.title}</span>
             </a>
