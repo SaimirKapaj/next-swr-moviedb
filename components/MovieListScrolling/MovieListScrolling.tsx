@@ -36,8 +36,8 @@ const MovieListScrolling = ({ category, data, genres }: Props) => {
               </div>
             ))
           : [...Array(5)].map((_, index) => (
-              <div className="flex-none mr-6 w-3/4 sm:w-1/2 lg:w-1/4 xl:w-1/5">
-                <LoadingMoviePlaceholder delay={index} key={index} />
+              <div key={index} className="flex-none mr-6 w-3/4 sm:w-1/2 lg:w-1/4 xl:w-1/5">
+                <LoadingMoviePlaceholder delay={index} />
               </div>
             ))}
       </div>
