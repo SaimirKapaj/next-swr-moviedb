@@ -19,7 +19,7 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
 
   const isLoadingInitialData = !data && !error;
   const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined');
-  const isLoadedAll = data && size > data[0]?.total_pages;
+  const isLoadedAll = data && size === data[0]?.total_pages;
 
   return (
     <>
