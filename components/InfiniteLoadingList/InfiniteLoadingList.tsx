@@ -19,6 +19,7 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
 
   const isLoadingInitialData = !data && !error;
   const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const isLoadedAll = data && size > data[0]?.total_pages;
 
   return (
     <>
@@ -52,7 +53,7 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
           ))
         )}
       </div>
-      {data && (
+      {data && !isLoadedAll ? (
         <div className="w-full flex justify-center mt-12">
           <button
             className={`flex relative items-center bg-teal-500 hover:bg-teal-600 focus:outline-none py-3 px-10 rounded-lg text-white mx-auto shadow ${
@@ -64,7 +65,7 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
             Load More
           </button>
         </div>
-      )}
+      ) : null}
     </>
   );
 };
