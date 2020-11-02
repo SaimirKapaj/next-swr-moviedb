@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 type Props = {
   children?: React.ReactNode;
@@ -20,6 +21,7 @@ const Layout = ({ children, title = 'Next Typescript Tailwind starter' }: Props)
           <main className="flex-1 p-4 md:p-8">{children}</main>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
