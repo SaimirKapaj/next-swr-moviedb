@@ -7,18 +7,18 @@ const GenresProvider = ({ children }) => {
   const { data: movieGenersData } = useSWR(`genre/movie/list`);
   const { data: tvShowGenersData } = useSWR(`genre/movie/list`);
   const [movieGenres, setMovieGenres] = React.useState([]);
-  const [tvShowGenres, setTvShowGenres] = React.useState([]);
+  const [tvGenres, setTvGenres] = React.useState([]);
 
   React.useEffect(() => {
     if (movieGenersData) setMovieGenres(movieGenersData.genres);
-    if (tvShowGenersData) setTvShowGenres(tvShowGenersData.genres);
+    if (tvShowGenersData) setTvGenres(tvShowGenersData.genres);
   }, [movieGenersData, tvShowGenersData]);
 
   return (
     <GenresContext.Provider
       value={{
         movieGenres,
-        tvShowGenres
+        tvGenres
       }}
     >
       {children}
