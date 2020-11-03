@@ -11,7 +11,7 @@ interface Props {
 const MovieItem = ({ image, title, vote, genres }: Props) => (
   <div className="h-full relative rounded overflow-hidden shadow-sm">
     {image ? (
-      <img className="object-cover w-full h-56" src={`https://image.tmdb.org/t/p/w500${image}`} />
+      <img className="object-cover w-full h-56" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${image}`} />
     ) : (
       <div className="w-full h-56 bg-gray-700" />
     )}
