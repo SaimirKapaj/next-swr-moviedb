@@ -45,7 +45,7 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
             >
               <Icon name="cross" className="w-4 h-4" />
             </button>
-          ): null}
+          ) : null}
           {genres.map((item) => (
             <button
               key={item.id}
