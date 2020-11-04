@@ -33,7 +33,7 @@ const DetailsPage = ({ details, credits }) => {
             </button>
           </div>
           <div className="w-full md:w-2/3 md:ml-6 mt-6 md:mt-0">
-            <h1 className="md:text-2xl text-xl font-semibold">{details?.title}</h1>
+            <h1 className="md:text-2xl text-xl font-semibold">{details?.title || details?.name}</h1>
             {details?.genres?.map((genre, index) => (
               <span>
                 {genre.name}
