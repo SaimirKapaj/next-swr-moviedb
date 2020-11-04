@@ -9,7 +9,7 @@ interface Props {
 }
 
 const MovieItem = ({ image, title, vote, genres }: Props) => (
-  <div className="h-full relative rounded overflow-hidden shadow-sm">
+  <div className="h-full relative rounded-lg overflow-hidden shadow-sm">
     {image ? (
       <img className="object-cover w-full h-56" src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${image}`} />
     ) : (
