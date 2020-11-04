@@ -19,9 +19,9 @@ const Layout = ({ children, title = 'Next Typescript Tailwind starter' }: Props)
         <div className="flex flex-col min-h-screen w-full">
           <Header />
           <main className="flex-1 p-4 md:p-8">{children}</main>
+          <Footer />
         </div>
       </div>
-      <Footer />
     </>
   );
 };
