@@ -36,11 +36,11 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
 
   return (
     <>
-      <div className="overflow-hidden relative">
+      <div className="overflow-hidden relative -ml-1">
         <div className="flex flex-no-wrap max-w-full overflow-x-scroll overflow-y-hidden pb-4 -mb-3">
           {selectedGenres.length ? (
             <button
-              className="p-2 px-3 rounded-full bg-gray-200 shadow mr-3 focus:outline-none"
+              className="p-2 px-3 rounded-full bg-gray-200 shadow ml-1 mr-2 focus:outline-none"
               onClick={() => setSelectedGenres([])}
             >
               <Icon name="cross" className="w-4 h-4" />
@@ -49,7 +49,7 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
           {genres.map((item) => (
             <button
               key={item.id}
-              className={`bg-gray-200 px-6 py-2 rounded-full shadow mr-3 whitespace-no-wrap focus:outline-none ${
+              className={`bg-gray-200 px-6 py-2 rounded-full shadow ml-1 mr-2 whitespace-no-wrap focus:outline-none ${
                 selectedGenres.includes(item.id) && ' bg-teal-500 text-white'
               }`}
               onClick={() => updateGenres(item.id)}
@@ -60,40 +60,32 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
         </div>
       </div>
       <div className="flex flex-wrap -mx-3 mt-6">
-        {data ? (
-          <>
-            {data?.map((item: any, index) => (
-              <React.Fragment key={index}>
-                {item.results.map((movie: any) => {
-                  return (
-                    <React.Fragment key={movie.id}>
-                      {isInSelectedGenres(movie.genre_ids) && (
-                        <div className="flex-none p-3 w-full sm:w-1/2 lg:w-1/4 xl:w-1/5">
-                          <Link href={`/${category}/${movie.id}`}>
-                            <a>
-                              <MovieItem
-                                image={movie.backdrop_path}
-                                title={movie.name ?? movie.title}
-                                vote={movie.vote_average}
-                                genres={genres?.filter((genre) => movie.genre_ids.includes(genre.id))}
-                              />
-                            </a>
-                          </Link>
-                        </div>
-                      )}
-                    </React.Fragment>
-                  );
-                })}
-              </React.Fragment>
+        {data
+          ? data?.map((item: any) =>
+              item.results.map((movie: any) => (
+                <React.Fragment key={movie.id}>
+                  {isInSelectedGenres(movie.genre_ids) && (
+                    <div className="flex-none p-3 w-full sm:w-1/2 lg:w-1/4 xl:w-1/5">
+                      <Link href={`/${category}/${movie.id}`}>
+                        <a>
+                          <MovieItem
+                            image={movie.backdrop_path}
+                            title={movie.name ?? movie.title}
+                            vote={movie.vote_average}
+                            genres={genres?.filter((genre) => movie.genre_ids.includes(genre.id))}
+                          />
+                        </a>
+                      </Link>
+                    </div>
+                  )}
+                </React.Fragment>
+              ))
+            )
+          : [...Array(5)].map((_, index) => (
+              <div key={index} className="flex-none p-1 w-full sm:w-1/2 lg:w-1/4 xl:w-1/5">
+                <LoadingMoviePlaceholder delay={index} />
+              </div>
             ))}
-          </>
-        ) : (
-          [...Array(5)].map((_, index) => (
-            <div key={index} className="flex-none p-1 w-full sm:w-1/2 lg:w-1/4 xl:w-1/5">
-              <LoadingMoviePlaceholder delay={index} />
-            </div>
-          ))
-        )}
       </div>
       {data && !isLoadedAll ? (
         <div className="w-full flex justify-center mt-12">
