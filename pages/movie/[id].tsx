@@ -1,17 +1,19 @@
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 import Layout from 'components/Layout';
+import DetailsPage from 'components/DetailsPage';
 
-const MovieDetailPage = () => {
+const MovieDetailsPage = () => {
   const { query } = useRouter();
+  const { data: details } = useSWR(`movie/${query.id}`);
+  const { data: credits } = useSWR(`movie/${query.id}/credits`);
 
   return (
     <Layout>
-      <div className="flex items-center justify-between my-5">
-        <h1 className="text-xl">{query.id}</h1>
-      </div>
+      <DetailsPage details={details} credits={credits} />
     </Layout>
   );
 };
 
-export default MovieDetailPage;
+export default MovieDetailsPage;
