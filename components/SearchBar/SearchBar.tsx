@@ -15,7 +15,7 @@ const SearchModal = ({ children, onClose }) => {
 };
 
 const storage =
-  typeof window !== 'undefined' && localStorage['searchHistroy'] ? JSON.parse(localStorage['searchHistroy']) : [];
+  typeof window !== 'undefined' && localStorage['searchHistory'] ? JSON.parse(localStorage['searchHistory']) : [];
 
 const SearchBar = () => {
   const router = useRouter();
@@ -43,19 +43,19 @@ const SearchBar = () => {
 
       if (!history.includes(trimTerm(searchTerm))) {
         setHistory([...history, trimTerm(searchTerm)]);
-        localStorage.setItem('searchHistroy', JSON.stringify([...history, trimTerm(searchTerm)]));
+        localStorage.setItem('searchHistory', JSON.stringify([...history, trimTerm(searchTerm)]));
       }
     }
   };
 
-  const deleteHistoryItem = (itemIndex: number) => {
+  const deleteHistoryItem = (itemIndex: number): void => {
     const newHistory = history.filter((_, i) => i !== itemIndex);
 
     setHistory(newHistory);
-    localStorage.setItem('searchHistroy', JSON.stringify(newHistory));
+    localStorage.setItem('searchHistory', JSON.stringify(newHistory));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLInputElement>): void => {
     e.preventDefault();
     redirect(term);
   };
