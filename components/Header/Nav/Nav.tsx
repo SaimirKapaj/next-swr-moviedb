@@ -31,7 +31,7 @@ const Nav = () => {
   const { pathname } = useRouter();
 
   return (
-    <nav className="flex fixed bottom-0 left-0 bg-white z-50 p-4 w-full justify-between border-t border-gray-400 sm:w-auto sm:relative sm:border-0 sm:justify-start sm:p-0">
+    <nav className="flex fixed bottom-0 left-0 bg-white z-10 p-4 w-full justify-between border-t border-gray-400 sm:w-auto sm:relative sm:border-0 sm:justify-start sm:p-0">
       {navItems.map((item) => (
         <div key={item.title}>
           <Link href={item.slug}>

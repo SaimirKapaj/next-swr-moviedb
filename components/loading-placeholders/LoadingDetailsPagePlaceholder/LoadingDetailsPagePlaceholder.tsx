@@ -2,7 +2,7 @@ const LoadingDetailPagePlaceholder = () => {
   return (
     <div className="animate-pulse flex flex-col md:flex-row mt-8 mb-6">
       <div className="md:w-1/4 w-full">
-        <div className="bg-gray-300 rounded-lg w-full h-40" />
+        <div className="bg-gray-300 rounded-lg w-full h-64" />
         <div className="w-full bg-gray-300 hover:bg-teal-600 rounded-lg mt-4 h-12 text-white focus:outline-none" />
       </div>
       <div className="w-full md:w-2/3 md:ml-6 mt-6 md:mt-0">
