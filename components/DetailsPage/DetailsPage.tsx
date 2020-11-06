@@ -20,11 +20,11 @@ const DetailsPage = ({ details, credits }) => {
           <div className="md:w-1/4 w-full">
             {details?.backdrop_path ? (
               <img
-                className="object-cover w-full rounded-lg"
+                className="object-cover w-full h-64 rounded-lg"
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${details?.backdrop_path}`}
               />
             ) : (
-              <div className="flex items-center justify-center rounded-lg w-full bg-gray-300 h-48 text-gray-400">
+              <div className="flex items-center justify-center rounded-lg w-full bg-gray-300 h-64 text-gray-400">
                 <Icon name="picture" className="w-24 h-24" />
               </div>
             )}
@@ -35,7 +35,7 @@ const DetailsPage = ({ details, credits }) => {
           <div className="w-full md:w-2/3 md:ml-6 mt-6 md:mt-0">
             <h1 className="md:text-2xl text-xl font-semibold">{details?.title || details?.name}</h1>
             {details?.genres?.map((genre, index) => (
-              <span>
+              <span key={index}>
                 {genre.name}
                 {index < details?.genres.length - 1 && ','}{' '}
               </span>
@@ -57,8 +57,8 @@ const DetailsPage = ({ details, credits }) => {
           <h3 className="font-semibold text-lg mt-12 mb-4">Cast</h3>
           <div className="overflow-hidden relative w-full">
             <div className="flex flex-no-wrap max-w-full overflow-x-scroll overflow-y-hidden pb-12 -mb-3">
-              {credits?.cast?.map((actor) => (
-                <div className="w-32 h-32 mr-4 flex-none" key={actor.cast_id}>
+              {credits?.cast?.map((actor, index) => (
+                <div className="w-32 h-32 mr-4 flex-none" key={index}>
                   {actor?.profile_path ? (
                     <img
                       className="w-32 h-32 object-cover rounded-full"
