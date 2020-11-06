@@ -1,5 +1,5 @@
-import Nav from './Nav/Nav';
-import Search from './Search/Search';
+import Nav from 'components/Nav';
+import Search from 'components/SearchBar';
 
 const Header = () => {
   return (
