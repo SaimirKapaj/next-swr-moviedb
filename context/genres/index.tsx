@@ -1,11 +1,11 @@
 import React from 'react';
 import useSWR from 'swr';
 
-const GenresContext = React.createContext(undefined);
+export const GenresContext = React.createContext(undefined);
 
-const GenresProvider = ({ children }) => {
+export const GenresProvider = ({ children }) => {
   const { data: movieGenersData } = useSWR(`genre/movie/list`);
-  const { data: tvShowGenersData } = useSWR(`genre/movie/list`);
+  const { data: tvShowGenersData } = useSWR(`genre/tv/list`);
   const [movieGenres, setMovieGenres] = React.useState([]);
   const [tvGenres, setTvGenres] = React.useState([]);
 
@@ -25,5 +25,3 @@ const GenresProvider = ({ children }) => {
     </GenresContext.Provider>
   );
 };
-
-export { GenresProvider, GenresContext };
