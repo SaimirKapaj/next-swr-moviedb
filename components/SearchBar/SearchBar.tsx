@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
+import { useLocalStorage } from 'hooks';
 import Icon from 'components/Icon';
 
 const SearchModal = ({ children, onClose }) => {
@@ -14,14 +15,12 @@ const SearchModal = ({ children, onClose }) => {
   );
 };
 
-const storage =
-  typeof window !== 'undefined' && localStorage['searchHistory'] ? JSON.parse(localStorage['searchHistory']) : [];
-
 const SearchBar = () => {
   const router = useRouter();
-  const [history, setHistory] = React.useState(storage);
-  const [term, setTerm] = React.useState('');
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [historyStorage, setHistoryStorage] = useLocalStorage<any>('searchHistory', []);
+  const [history, setHistory] = React.useState<string[]>(historyStorage);
+  const [term, setTerm] = React.useState<string>('');
+  const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (isModalOpen) {
@@ -37,25 +36,24 @@ const SearchBar = () => {
 
   const redirect = (searchTerm: string): void => {
     if (trimTerm(searchTerm)) {
-      router.push(`/search?q=${trimTerm(searchTerm)}`);
-      setIsModalOpen(false);
-      setTerm('');
-
       if (!history.includes(trimTerm(searchTerm))) {
         setHistory([...history, trimTerm(searchTerm)]);
-        localStorage.setItem('searchHistory', JSON.stringify([...history, trimTerm(searchTerm)]));
+        setHistoryStorage([...history, trimTerm(searchTerm)]);
       }
+      setIsModalOpen(false);
+      setTerm('');
+      router.push(`/search?q=${trimTerm(searchTerm)}`);
     }
   };
 
   const deleteHistoryItem = (itemIndex: number): void => {
-    const newHistory = history.filter((_, i) => i !== itemIndex);
+    const newHistory = history.filter((_, index) => index !== itemIndex);
 
     setHistory(newHistory);
-    localStorage.setItem('searchHistory', JSON.stringify(newHistory));
+    setHistoryStorage(newHistory);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLInputElement>): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     redirect(term);
   };
