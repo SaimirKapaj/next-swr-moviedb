@@ -1,4 +1,7 @@
 import React from 'react';
+import useSWR from 'swr';
+
+import { Movie, Credits, Details } from 'types';
 
 const isWindow = typeof window !== 'undefined';
 
@@ -26,4 +29,21 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
   };
 
   return [storedValue, setValue];
+};
+
+export const useDetails = (mediaType: 'movie' | 'tv', id: string | string[]) => {
+  const { data: media, error: errorMedia } = useSWR<Movie>(`${mediaType}/${id}`);
+  const { data: mediaCredits, error: errorMediaCredits } = useSWR<Credits>(`${mediaType}/${id}/credits`);
+
+  const directors = mediaCredits?.crew?.filter((member) => member.job === 'Director');
+
+  const details: Details = {
+    ...media,
+    directors,
+    actors: mediaCredits?.cast
+  };
+
+  const error = errorMedia || errorMediaCredits;
+
+  return { details, error };
 };
