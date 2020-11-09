@@ -1,14 +1,14 @@
+import { Details } from 'types';
 import Icon from 'components/Icon';
 import ButtonBack from 'components/ButtonBack';
 import LoadingDetailsPagePlaceholder from 'components/loading-placeholders/LoadingDetailsPagePlaceholder';
 import LoadingCastPlaceholder from 'components/loading-placeholders/LoadingCastPlaceholder';
 
 interface Props {
-  details: any;
-  credits: any;
+  details: Details;
 }
 
-const DetailsPage = ({ details, credits }) => {
+const DetailsPage = ({ details }: Props) => {
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="mt-4">
@@ -47,18 +47,26 @@ const DetailsPage = ({ details, credits }) => {
 
             <h3 className="mt-10 mb-1 font-semibold text-lg">Overview</h3>
             <p>{details?.overview}</p>
+
+            {!!details?.directors?.length ? <h3 className="mt-4 mb-1 font-semibold text-lg">Director</h3> : null}
+            {details?.directors?.map((director, index) => (
+              <span key={index}>
+                {director.name}
+                {index < details?.directors.length - 1 && ','}{' '}
+              </span>
+            ))}
           </div>
         </div>
       ) : (
         <LoadingDetailsPagePlaceholder />
       )}
-      {credits ? (
+      {details?.actors ? (
         <>
           <h3 className="font-semibold text-lg mt-12 mb-4">Cast</h3>
           <div className="overflow-hidden relative w-full">
             <div className="flex flex-no-wrap max-w-full overflow-x-scroll overflow-y-hidden pb-12 -mb-3">
-              {credits?.cast?.map((actor, index) => (
-                <div className="w-32 h-32 mr-4 flex-none" key={index}>
+              {details?.actors.map((actor) => (
+                <div className="w-32 h-32 mr-4 flex-none" key={actor.id}>
                   {actor?.profile_path ? (
                     <img
                       className="w-32 h-32 object-cover rounded-full"
