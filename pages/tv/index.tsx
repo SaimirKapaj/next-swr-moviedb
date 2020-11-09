@@ -16,18 +16,18 @@ const TvPage = () => {
   return (
     <Layout>
       <TitleWithMoreButton href="/tv/airing-today" title="Airing Today" />
-      <MovieListScrolling category="tv" data={airingToday} genres={tvGenres} />
+      <MovieListScrolling mediaType="tv" data={airingToday} genres={tvGenres} />
       <div className="mt-12">
         <TitleWithMoreButton href="/tv/on-the-air" title="On the air" />
-        <MovieListScrolling category="tv" data={onTheAir} genres={tvGenres} />
+        <MovieListScrolling mediaType="tv" data={onTheAir} genres={tvGenres} />
       </div>
       <div className="mt-12">
         <TitleWithMoreButton href="/tv/popular" title="Popular" />
-        <MovieListScrolling category="tv" data={popular} genres={tvGenres} />
+        <MovieListScrolling mediaType="tv" data={popular} genres={tvGenres} />
       </div>
       <div className="mt-12">
         <TitleWithMoreButton href="/tv/top-rated" title="Top Rated" />
-        <MovieListScrolling category="tv" data={topRated} genres={tvGenres} />
+        <MovieListScrolling mediaType="tv" data={topRated} genres={tvGenres} />
       </div>
     </Layout>
   );

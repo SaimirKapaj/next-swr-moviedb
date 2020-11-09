@@ -16,18 +16,18 @@ const MoviePage = () => {
   return (
     <Layout>
       <TitleWithMoreButton href="/movie/now-playing" title="Now Playing" />
-      <MovieListScrolling category="movie" data={nowPlawing} genres={movieGenres} />
+      <MovieListScrolling mediaType="movie" data={nowPlawing} genres={movieGenres} />
       <div className="mt-12">
         <TitleWithMoreButton href="/movie/upcoming" title="Upcoming" />
-        <MovieListScrolling category="movie" data={upcoming} genres={movieGenres} />
+        <MovieListScrolling mediaType="movie" data={upcoming} genres={movieGenres} />
       </div>
       <div className="mt-12">
         <TitleWithMoreButton href="/movie/popular" title="Popular" />
-        <MovieListScrolling category="movie" data={popular} genres={movieGenres} />
+        <MovieListScrolling mediaType="movie" data={popular} genres={movieGenres} />
       </div>
       <div className="mt-12">
         <TitleWithMoreButton href="/movie/top-rated" title="Top Rated" />
-        <MovieListScrolling category="movie" data={topRated} genres={movieGenres} />
+        <MovieListScrolling mediaType="movie" data={topRated} genres={movieGenres} />
       </div>
     </Layout>
   );
