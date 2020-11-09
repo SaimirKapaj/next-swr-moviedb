@@ -1,5 +1,5 @@
 import React from 'react';
-import useSWR from 'swr';
+import useSWR, { useSWRInfinite } from 'swr';
 
 import { Movie, Credits, Details } from 'types';
 
@@ -46,4 +46,21 @@ export const useDetails = (mediaType: 'movie' | 'tv', id: string | string[]) => 
   const error = errorMedia || errorMediaCredits;
 
   return { details, error };
+};
+
+export const useInfiniteLoading = (url: string) => {
+  const { data, error, size, setSize } = useSWRInfinite((index) => `${url}?page=${index + 1}`);
+
+  const isLoadingInitialData = !data && !error;
+  const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined');
+  const isLoadedAll = data && size === data[0]?.total_pages;
+
+  return {
+    data,
+    error,
+    size,
+    setSize,
+    isLoadingMore,
+    isLoadedAll
+  };
 };

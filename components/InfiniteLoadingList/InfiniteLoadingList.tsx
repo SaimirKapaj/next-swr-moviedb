@@ -1,26 +1,23 @@
 import React from 'react';
 import Link from 'next/link';
-import { useSWRInfinite } from 'swr';
 
+import { useInfiniteLoading } from 'hooks';
 import { GenresContext } from 'context/genres';
+import { MediaType } from 'types';
 import MovieItem from 'components/MovieItem/MovieItem';
 import LoadingMoviePlaceholder from 'components/loading-placeholders/LoadingMoviePlaceholder';
 import Icon from 'components/Icon';
 
 interface Props {
   url: string;
-  category: string;
+  mediaType: MediaType;
 }
 
-const InfiniteLoadingList = ({ url, category }: Props) => {
+const InfiniteLoadingList = ({ url, mediaType }: Props) => {
   const { movieGenres, tvGenres } = React.useContext(GenresContext);
-  const { data, error, size, setSize } = useSWRInfinite((index) => `${url}?page=${index + 1}`);
-  const genres = category === 'movie' ? movieGenres : tvGenres;
+  const { data, size, setSize, isLoadingMore, isLoadedAll } = useInfiniteLoading(url);
+  const genres = mediaType === 'movie' ? movieGenres : tvGenres;
   const [selectedGenres, setSelectedGenres] = React.useState([]);
-
-  const isLoadingInitialData = !data && !error;
-  const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined');
-  const isLoadedAll = data && size === data[0]?.total_pages;
 
   const updateGenres = (id: number) => {
     if (selectedGenres.includes(id)) {
@@ -66,14 +63,9 @@ const InfiniteLoadingList = ({ url, category }: Props) => {
                 <React.Fragment key={movie.id}>
                   {isInSelectedGenres(movie.genre_ids) && (
                     <div className="flex-none p-3 w-full sm:w-1/2 lg:w-1/4 xl:w-1/5">
-                      <Link href={`/${category}/${movie.id}`}>
+                      <Link href={`/${mediaType}/${movie.id}`}>
                         <a>
-                          <MovieItem
-                            image={movie.backdrop_path}
-                            title={movie.name ?? movie.title}
-                            vote={movie.vote_average}
-                            genres={genres?.filter((genre) => movie.genre_ids.includes(genre.id))}
-                          />
+                          <MovieItem details={movie} genres={genres} />
                         </a>
                       </Link>
                     </div>
