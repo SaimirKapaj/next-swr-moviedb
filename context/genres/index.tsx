@@ -1,13 +1,20 @@
 import React from 'react';
 import useSWR from 'swr';
 
-export const GenresContext = React.createContext(undefined);
+import { GenresList, Genre } from 'types';
+
+interface GenresContextType {
+  movieGenres: Genre[];
+  tvGenres: Genre[];
+}
+
+export const GenresContext = React.createContext<GenresContextType>(undefined);
 
 export const GenresProvider = ({ children }) => {
-  const { data: movieGenersData } = useSWR(`genre/movie/list`);
-  const { data: tvShowGenersData } = useSWR(`genre/tv/list`);
-  const [movieGenres, setMovieGenres] = React.useState([]);
-  const [tvGenres, setTvGenres] = React.useState([]);
+  const { data: movieGenersData } = useSWR<GenresList>(`genre/movie/list`);
+  const { data: tvShowGenersData } = useSWR<GenresList>(`genre/tv/list`);
+  const [movieGenres, setMovieGenres] = React.useState<Genre[]>([]);
+  const [tvGenres, setTvGenres] = React.useState<Genre[]>([]);
 
   React.useEffect(() => {
     if (movieGenersData) setMovieGenres(movieGenersData.genres);
