@@ -1,4 +1,3 @@
-
 export type MediaType = 'movie' | 'tv';
 
 export interface Genre {
@@ -21,8 +20,13 @@ export interface Movie extends GenresList {
   popularity: number;
   vote_average: number;
   vote_count: number;
+  media_type: string;
   runtime: number;
   genre_ids: Genre[];
+}
+
+export interface Results {
+  results: Movie[];
 }
 
 export interface Cast {
