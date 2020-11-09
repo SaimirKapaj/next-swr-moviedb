@@ -26,6 +26,9 @@ export interface Movie extends GenresList {
 }
 
 export interface Results {
+  page: number;
+  total_pages: number;
+  total_results: number;
   results: Movie[];
 }
 

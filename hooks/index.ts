@@ -1,7 +1,7 @@
 import React from 'react';
 import useSWR, { useSWRInfinite } from 'swr';
 
-import { Movie, Credits, Details } from 'types';
+import { Movie, Credits, Details, Results } from 'types';
 
 const isWindow = typeof window !== 'undefined';
 
@@ -49,7 +49,7 @@ export const useDetails = (mediaType: 'movie' | 'tv', id: string | string[]) => 
 };
 
 export const useInfiniteLoading = (url: string) => {
-  const { data, error, size, setSize } = useSWRInfinite((index) => `${url}?page=${index + 1}`);
+  const { data, error, size, setSize } = useSWRInfinite<Results>((index) => `${url}?page=${index + 1}`);
 
   const isLoadingInitialData = !data && !error;
   const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined');
