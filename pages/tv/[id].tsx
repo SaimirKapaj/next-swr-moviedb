@@ -1,17 +1,16 @@
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 
+import { useDetails } from 'hooks';
 import Layout from 'components/Layout';
 import DetailsPage from 'components/DetailsPage';
 
 const TvDetailsPage = () => {
   const { query } = useRouter();
-  const { data: details } = useSWR(`tv/${query.id}`);
-  const { data: credits } = useSWR(`tv/${query.id}/credits`);
+  const { details } = useDetails('tv', query.id);
 
   return (
     <Layout>
-      <DetailsPage details={details} credits={credits} />
+      <DetailsPage details={details} />
     </Layout>
   );
 };
