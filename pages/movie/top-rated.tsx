@@ -6,7 +6,7 @@ const MovieTopRatedPage = () => {
   return (
     <Layout>
       <TitleWithBackButton title="Top Rated" />
-      <InfiniteLoadingList url="movie/top_rated" category="movie" />
+      <InfiniteLoadingList url="movie/top_rated" mediaType="movie" />
     </Layout>
   );
 };

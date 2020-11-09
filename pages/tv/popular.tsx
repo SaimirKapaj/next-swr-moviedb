@@ -6,7 +6,7 @@ const TvPopularPage = () => {
   return (
     <Layout>
       <TitleWithBackButton title="Popular" />
-      <InfiniteLoadingList url="tv/on_the_air" category="tv" />
+      <InfiniteLoadingList url="tv/on_the_air" mediaType="tv" />
     </Layout>
   );
 };

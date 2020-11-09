@@ -6,7 +6,7 @@ const MoviePopularPage = () => {
   return (
     <Layout>
       <TitleWithBackButton title="Popular" />
-      <InfiniteLoadingList url="movie/popular" category="movie" />
+      <InfiniteLoadingList url="movie/popular" mediaType="movie" />
     </Layout>
   );
 };

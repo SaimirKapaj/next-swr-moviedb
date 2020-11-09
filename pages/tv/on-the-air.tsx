@@ -6,7 +6,7 @@ const TvOnTheAirPage = () => {
   return (
     <Layout>
       <TitleWithBackButton title="On the air" />
-      <InfiniteLoadingList url="tv/on_the_air" category="tv" />
+      <InfiniteLoadingList url="tv/on_the_air" mediaType="tv" />
     </Layout>
   );
 };

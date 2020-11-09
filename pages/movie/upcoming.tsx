@@ -6,7 +6,7 @@ const MovieUpcomingPage = () => {
   return (
     <Layout>
       <TitleWithBackButton title="Upcoming" />
-      <InfiniteLoadingList url="movie/upcoming" category="movie" />
+      <InfiniteLoadingList url="movie/upcoming" mediaType="movie" />
     </Layout>
   );
 };
