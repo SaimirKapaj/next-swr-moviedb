@@ -22,8 +22,7 @@ const SearchModal = ({ children, onClose }: SearchModalProps) => {
 
 const SearchBar = () => {
   const router = useRouter();
-  const [historyStorage, setHistoryStorage] = useLocalStorage<string[]>('searchHistory', []);
-  const [history, setHistory] = React.useState<string[]>(historyStorage);
+  const [searchHistory, setSearchHistory] = useLocalStorage<string[]>('searchHistory', []);
   const [term, setTerm] = React.useState<string>('');
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
 
@@ -41,9 +40,8 @@ const SearchBar = () => {
 
   const redirect = (searchTerm: string): void => {
     if (trimTerm(searchTerm)) {
-      if (!history.includes(trimTerm(searchTerm))) {
-        setHistory([...history, trimTerm(searchTerm)]);
-        setHistoryStorage([...history, trimTerm(searchTerm)]);
+      if (!searchHistory.includes(trimTerm(searchTerm))) {
+        setSearchHistory([...searchHistory, trimTerm(searchTerm)]);
       }
       setIsModalOpen(false);
       setTerm('');
@@ -51,11 +49,9 @@ const SearchBar = () => {
     }
   };
 
-  const deleteHistoryItem = (itemIndex: number): void => {
-    const newHistory = history.filter((_, index) => index !== itemIndex);
-
-    setHistory(newHistory);
-    setHistoryStorage(newHistory);
+  const deleteSearchHistoryItem = (itemIndex: number): void => {
+    const newHistory = searchHistory.filter((_, index) => index !== itemIndex);
+    setSearchHistory(newHistory);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -101,11 +97,11 @@ const SearchBar = () => {
               Close
             </button>
           </div>
-          {!!history.length ? (
+          {!!searchHistory.length ? (
             <div className="mt-3">
               <span className="ml-1">Recent</span>
               <div className="flex flex-wrap w-full">
-                {history.map((term, index) => (
+                {searchHistory.map((term, index) => (
                   <label key={index} className="flex items-center relative mr-2 mt-2">
                     <button
                       onClick={() => redirect(term)}
@@ -114,7 +110,7 @@ const SearchBar = () => {
                       <span className="mr-2">{term}</span>
                     </button>
                     <button
-                      onClick={() => deleteHistoryItem(index)}
+                      onClick={() => deleteSearchHistoryItem(index)}
                       className="absolute right-0 mr-2 cursor-pointer bg-gray-100 hover:bg-gray-300 p-1 rounded-full focus:outline-none"
                     >
                       <Icon name="cross" className="w-3" />
