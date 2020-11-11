@@ -1,37 +1,9 @@
 import React from 'react';
 import useSWR, { useSWRInfinite } from 'swr';
 
-import { Movie, Credits, Details, Results } from 'types';
+import { MediaType, Movie, Credits, Details, Results } from 'types';
 
-const isWindow = typeof window !== 'undefined';
-
-export const useLocalStorage = <T>(key: string, initialValue: T) => {
-  const [storedValue, setStoredValue] = React.useState<T>(() => {
-    try {
-      const item = isWindow && window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
-      console.log(error);
-      return initialValue;
-    }
-  });
-
-  const setValue = (value: T): void => {
-    try {
-      const valueToStore = value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      if (isWindow) {
-        window.localStorage.setItem(key, JSON.stringify(valueToStore));
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return [storedValue, setValue];
-};
-
-export const useDetails = (mediaType: 'movie' | 'tv', id: string | string[]) => {
+export const useDetails = (mediaType: MediaType, id: string | string[]) => {
   const { data: media, error: errorMedia } = useSWR<Movie>(`${mediaType}/${id}`);
   const { data: mediaCredits, error: errorMediaCredits } = useSWR<Credits>(`${mediaType}/${id}/credits`);
 
@@ -63,4 +35,24 @@ export const useInfiniteLoading = (url: string) => {
     isLoadingMore,
     isLoadedAll
   };
+};
+
+export const useLocalStorage = <T>(key: string, initial: T) => {
+  const [value, setValue] = React.useState(() => {
+    if (typeof window !== 'undefined') {
+      const storedValue = window.localStorage.getItem(key);
+
+      if (storedValue !== null) {
+        return JSON.parse(storedValue);
+      }
+    }
+
+    return initial;
+  });
+
+  React.useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  }, [value]);
+
+  return [value, setValue];
 };

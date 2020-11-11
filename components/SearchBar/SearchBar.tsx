@@ -4,7 +4,12 @@ import { useRouter } from 'next/router';
 import { useLocalStorage } from 'hooks';
 import Icon from 'components/Icon';
 
-const SearchModal = ({ children, onClose }) => {
+interface SearchModalProps {
+  children: React.ReactNode;
+  onClose: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+
+const SearchModal = ({ children, onClose }: SearchModalProps) => {
   return (
     <div className="fixed w-screen h-screen flex justify-center left-0 top-0 z-50 overscroll-auto">
       <div className="absolute w-screen h-screen bg-black opacity-75 left-0 top-0 z-30" onClick={onClose}></div>
@@ -17,7 +22,7 @@ const SearchModal = ({ children, onClose }) => {
 
 const SearchBar = () => {
   const router = useRouter();
-  const [historyStorage, setHistoryStorage] = useLocalStorage<any>('searchHistory', []);
+  const [historyStorage, setHistoryStorage] = useLocalStorage<string[]>('searchHistory', []);
   const [history, setHistory] = React.useState<string[]>(historyStorage);
   const [term, setTerm] = React.useState<string>('');
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
