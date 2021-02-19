@@ -11,7 +11,7 @@ interface Props extends GenresList {
 const MovieListScrolling = ({ mediaType, data, genres }: Props) => {
   return (
     <div className="overflow-hidden relative">
-      <div className="bg-gradient-to-r from-transparent opacity-75 to-white w-32 h-full absolute right-0 z-30" />
+      <div className="bg-gradient-to-r from-transparent opacity-75 to-black w-32 h-full absolute right-0 z-30" />
       <div className="flex flex-no-wrap max-w-full overflow-x-scroll overflow-y-hidden pb-4 -mb-3">
         {data?.results
           ? data?.results?.map((movie) => (
