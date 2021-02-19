@@ -47,7 +47,7 @@ const InfiniteLoadingList = ({ url, mediaType }: Props) => {
             <button
               key={item.id}
               className={`bg-gray-800 px-6 py-2 rounded-full ml-1 mr-2 whitespace-no-wrap focus:outline-none ${
-                selectedGenres.includes(item.id) && ' bg-blue-500 border-blue-600 text-white'
+                selectedGenres.includes(item.id) && ' bg-yellow-500 border-yellow-500 text-gray-800'
               }`}
               onClick={() => updateGenres(item.id)}
             >
@@ -82,7 +82,7 @@ const InfiniteLoadingList = ({ url, mediaType }: Props) => {
       {data && !isLoadedAll ? (
         <div className="w-full flex justify-center mt-12">
           <button
-            className={`flex relative items-center bg-blue-500 hover:bg-blue-600 border border-blue-600 focus:outline-none py-3 px-10 rounded-lg text-white mx-auto ${
+            className={`flex relative items-center bg-yellow-500 hover:bg-yellow-400 border border-yellow-400 focus:outline-none py-3 px-10 rounded-lg text-gray-800 mx-auto ${
               isLoadingMore ? 'cursor-not-allowed' : ''
             }`}
             onClick={() => setSize(size + 1)}

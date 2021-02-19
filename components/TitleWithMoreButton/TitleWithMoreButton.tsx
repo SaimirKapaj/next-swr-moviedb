@@ -10,7 +10,7 @@ const TitleWithMoreButton = ({ title, href }: Props) => {
     <div className="flex items-center justify-between my-5">
       <h1 className="text-xl">{title}</h1>
       <Link href={href}>
-        <button className="hover:text-teal-600 focus:outline-none">More &rarr;</button>
+        <button className="hover:text-yellow-500 focus:outline-none">More &rarr;</button>
       </Link>
     </div>
   );

@@ -83,7 +83,7 @@ const SearchBar = () => {
                 {term ? (
                   <span
                     onClick={() => setTerm('')}
-                    className="absolute cursor-pointer right-0 mr-3 text-white bg-blue-500 hover:bg-blue-600 p-1 rounded-full focus:outline-none"
+                    className="absolute cursor-pointer right-0 mr-3 text-white bg-yellow-500 hover:bg-yellow-400 p-1 rounded-full focus:outline-none"
                   >
                     <Icon name="cross" className="w-4" />
                   </span>

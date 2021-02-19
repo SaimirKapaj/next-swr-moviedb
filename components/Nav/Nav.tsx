@@ -36,8 +36,8 @@ const Nav = () => {
         <div key={item.title}>
           <Link href={item.slug}>
             <a
-              className={`flex flex-col justify-end items-center hover:text-blue-500 sm:text-xl sm:mr-6 sm:flex-row sm:justify-center ${
-                pathname.includes(item.slug) && 'text-blue-500'
+              className={`flex flex-col justify-end items-center hover:text-yellow-500 sm:text-xl sm:mr-6 sm:flex-row sm:justify-center ${
+                pathname.includes(item.slug) && 'text-yellow-500'
               }`}
             >
               <Icon name={item.icon} className="w-5 mb-1 h-5 sm:mr-2 sm:mb-0" />

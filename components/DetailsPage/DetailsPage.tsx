@@ -68,7 +68,7 @@ const DetailsPage = ({ details }: Props) => {
             <div className="flex justify-between">
               <h1 className="md:text-2xl text-xl font-semibold">{details?.title || details?.name}</h1>
               <div className="flex items-center mt-1">
-                <Icon className="w-5 text-blue-500" name="star" />
+                <Icon className="w-5 text-yellow-500" name="star" />
                 <span className="font-semibold ml-2">{details?.vote_average} / 10</span>
               </div>
             </div>
@@ -90,7 +90,7 @@ const DetailsPage = ({ details }: Props) => {
               </span>
             ))}
           </div>
-          {details?.actors ? (
+          {details?.actors && details?.actors.length > 0 ? (
             <div className="p-6">
               <h3 className="font-semibold text-lg mt-0 mb-4">Cast</h3>
               <div className="overflow-hidden relative w-full">
