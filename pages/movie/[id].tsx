@@ -8,9 +8,14 @@ const MovieDetailsPage = () => {
   const { query } = useRouter();
   const { details } = useDetails('movie', query.id);
 
+  const movieDatails = {
+    media_type: 'movie',
+    ...details
+  };
+
   return (
     <Layout>
-      <DetailsPage details={details} />
+      <DetailsPage details={movieDatails} />
     </Layout>
   );
 };
