@@ -22,7 +22,7 @@ export interface Movie extends GenresList {
   vote_count: number;
   media_type: string;
   runtime: number;
-  genre_ids: Genre[];
+  genre_ids: Genre[] | number[];
 }
 
 export interface Results {
@@ -54,4 +54,13 @@ export interface Credits {
 export interface Details extends Movie {
   directors: Crew[];
   actors: Cast[];
+}
+
+export interface MyListMovie {
+  media_type: string;
+  id: number;
+  backdrop_path: string;
+  name: string;
+  vote_average: number;
+  genre_ids: number[];
 }
