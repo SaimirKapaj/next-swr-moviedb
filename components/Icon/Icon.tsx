@@ -12,7 +12,8 @@ export type IconType =
   | 'star'
   | 'user'
   | 'picture'
-  | 'arrow-left';
+  | 'arrow-left'
+  | 'heart';
 
 interface Props {
   name: IconType;
@@ -83,6 +84,11 @@ const icons: { [key in IconType] } = {
   picture: (styles) => (
     <svg fill="currentColor" viewBox="0 0 448 512" className={styles}>
       <path d="M416 32H32A32 32 0 0 0 0 64v384a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32V64a32 32 0 0 0-32-32zm-16 400H48v-64h352zm0-112h-16l-97.07-121c-7.46-9.31-22.4-9.31-29.86 0l-63.38 79-33.05-45.78c-7.92-11-25.36-11-33.28 0L64 320H48V80h352zM144 176a32 32 0 1 0-32-32 32 32 0 0 0 32 32z"></path>{' '}
+    </svg>
+  ),
+  heart: (styles) => (
+    <svg fill="currentColor" viewBox="0 0 512 512" className={styles}>
+      <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"></path>{' '}
     </svg>
   ),
   'arrow-left': (styles) => (
