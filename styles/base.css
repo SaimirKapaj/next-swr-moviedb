@@ -1,5 +1,5 @@
 body {
-  @apply bg-white text-gray-800;
+  @apply bg-gray-900 text-gray-400;
 }
 
 body.unscrollable {
