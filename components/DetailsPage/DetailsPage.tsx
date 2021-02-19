@@ -103,7 +103,7 @@ const DetailsPage = ({ details }: Props) => {
                           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${actor?.profile_path}`}
                         />
                       ) : (
-                        <div className="flex items-center justify-center w-24 h-24 bg-gray-300 text-gray-400 rounded-full">
+                        <div className="flex items-center justify-center w-24 h-24 bg-gray-700 text-gray-800 rounded-full">
                           <Icon name="user" className="w-10 h-10" />
                         </div>
                       )}
