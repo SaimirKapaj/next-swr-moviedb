@@ -46,7 +46,7 @@ const InfiniteLoadingList = ({ url, mediaType }: Props) => {
           {genres.map((item) => (
             <button
               key={item.id}
-              className={`bg-gray-800 px-6 py-2 rounded-full ml-1 mr-2 whitespace-no-wrap focus:outline-none ${
+              className={`bg-gray-800 px-6 py-2 rounded-full ml-1 mr-2 whitespace-nowrap focus:outline-none ${
                 selectedGenres.includes(item.id) && ' bg-yellow-500 border-yellow-500 text-gray-800'
               }`}
               onClick={() => updateGenres(item.id)}
