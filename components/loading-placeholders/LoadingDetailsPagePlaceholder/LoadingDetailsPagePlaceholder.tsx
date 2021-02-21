@@ -1,5 +1,3 @@
-import LoadingCastPlaceholder from 'components/loading-placeholders/LoadingCastPlaceholder';
-
 const LoadingDetailPagePlaceholder = () => {
   return (
     <div className="flex flex-col mt-8 mb-6">
