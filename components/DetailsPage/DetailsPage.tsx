@@ -1,5 +1,5 @@
-import { useLocalStorage } from 'hooks';
-import { Details, MyListMovie } from 'types';
+import { useMyList } from 'hooks';
+import { Details } from 'types';
 import Icon from 'components/Icon';
 import ButtonBack from 'components/ButtonBack';
 import LoadingDetailsPagePlaceholder from 'components/loading-placeholders/LoadingDetailsPagePlaceholder';
@@ -9,29 +9,7 @@ interface Props {
 }
 
 const DetailsPage = ({ details }: Props) => {
-  const [myList, setMyList] = useLocalStorage<MyListMovie[]>('myList', []);
-
-  const isInMyList = myList.some((item) => item.id === details.id);
-
-  console.log(isInMyList);
-
-  const addToList = () => {
-    const listItem: MyListMovie = {
-      media_type: details.media_type,
-      id: details.id,
-      backdrop_path: details.backdrop_path,
-      name: details.name,
-      vote_average: details.vote_average,
-      genre_ids: details?.genres.map((genre) => genre.id)
-    };
-
-    if (!isInMyList && !!Object.keys(listItem).length) {
-      setMyList([...myList, listItem]);
-    } else {
-      const newList = myList.filter((item) => item.id !== details.id);
-      setMyList(newList);
-    }
-  };
+  const { isInMyList, addToList } = useMyList(details);
 
   return (
     <div className="max-w-screen-md mx-auto">

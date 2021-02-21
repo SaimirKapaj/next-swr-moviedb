@@ -55,12 +55,3 @@ export interface Details extends Movie {
   directors: Crew[];
   actors: Cast[];
 }
-
-export interface MyListMovie {
-  media_type: string;
-  id: number;
-  backdrop_path: string;
-  name: string;
-  vote_average: number;
-  genre_ids: number[];
-}

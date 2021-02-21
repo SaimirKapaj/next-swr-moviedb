@@ -56,3 +56,28 @@ export const useLocalStorage = <T>(key: string, initial: T) => {
 
   return [value, setValue] as [T, typeof setValue];
 };
+
+export const useMyList = (movie: Movie) => {
+  const [myList, setMyList] = useLocalStorage<Movie[]>('myList', []);
+
+  const isInMyList = myList.some((item) => item.id === movie.id);
+
+  const addToList = () => {
+    const listItem: Movie = {
+      ...movie,
+      genre_ids: movie?.genres.map((genre) => genre.id)
+    };
+
+    if (!isInMyList && !!Object.keys(listItem).length) {
+      setMyList([...myList, listItem]);
+    } else {
+      const newList = myList.filter((item) => item.id !== movie.id);
+      setMyList(newList);
+    }
+  };
+
+  return {
+    addToList,
+    isInMyList
+  };
+};
