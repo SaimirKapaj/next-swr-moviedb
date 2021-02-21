@@ -28,10 +28,10 @@ const SearchBar = () => {
 
   React.useEffect(() => {
     if (isModalOpen) {
-      document.querySelector('body')!.classList.add('unscrollable');
+      document.querySelector('body')!.classList.add('overflow-hidden');
       return;
     }
-    document.querySelector('body')!.classList.remove('unscrollable');
+    document.querySelector('body')!.classList.remove('overflow-hidden');
   }, [isModalOpen]);
 
   const trimTerm = (searchTerm: string): string => {
