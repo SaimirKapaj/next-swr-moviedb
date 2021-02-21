@@ -18,7 +18,7 @@ const DetailsPage = ({ details }: Props) => {
       </div>
 
       {details ? (
-        <div className="flex flex-col mt-8 mb-6 bg-gray-800 rounded-lg overflow-hidden">
+        <div className="flex flex-col mt-8 mb-6 overflow-hidden">
           <div className="w-full">
             <div className="relative">
               <button
@@ -32,7 +32,7 @@ const DetailsPage = ({ details }: Props) => {
               </button>
               {details?.backdrop_path ? (
                 <img
-                  className="object-cover w-full"
+                  className="object-cover w-full rounded-lg"
                   src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${details?.backdrop_path}`}
                 />
               ) : (
@@ -43,9 +43,9 @@ const DetailsPage = ({ details }: Props) => {
             </div>
           </div>
           <div className="w-full p-6">
-            <div className="flex justify-between">
+            <div className="flex justify-between items-start">
               <h1 className="md:text-2xl text-xl font-semibold">{details?.title || details?.name}</h1>
-              <div className="flex items-center mt-1">
+              <div className="flex items-center mt-1 whitespace-nowrap">
                 <Icon className="w-5 text-yellow-500" name="star" />
                 <span className="font-semibold ml-2">{details?.vote_average} / 10</span>
               </div>
