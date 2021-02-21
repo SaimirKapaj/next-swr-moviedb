@@ -6,6 +6,7 @@ import { GenresContext } from 'context/genres';
 import { MediaType } from 'types';
 import MovieItem from 'components/MovieItem/MovieItem';
 import LoadingMoviePlaceholder from 'components/loading-placeholders/LoadingMoviePlaceholder';
+import Button from 'components/Button';
 import Icon from 'components/Icon';
 
 interface Props {
@@ -34,25 +35,23 @@ const InfiniteLoadingList = ({ url, mediaType }: Props) => {
   return (
     <>
       <div className="overflow-hidden relative -ml-1">
-        <div className="flex flex-no-wrap max-w-full overflow-x-scroll overflow-y-hidden pb-4 -mb-3">
+        <div className="flex flex-no-wrap max-w-full overflow-x-scroll overflow-y-hidden pb-4 -mb-3 space-x-2 px-1">
           {selectedGenres.length ? (
             <button
-              className="p-2 px-3 rounded-full bg-gray-800 ml-1 mr-2 focus:outline-none"
+              className="p-2 px-3 rounded-full bg-gray-800 focus:outline-none"
               onClick={() => setSelectedGenres([])}
             >
               <Icon name="cross" className="w-4 h-4" />
             </button>
           ) : null}
           {genres.map((item) => (
-            <button
+            <Button
               key={item.id}
-              className={`bg-gray-800 px-6 py-2 rounded-full ml-1 mr-2 whitespace-nowrap focus:outline-none ${
-                selectedGenres.includes(item.id) && ' bg-yellow-500 border-yellow-500 text-gray-800'
-              }`}
               onClick={() => updateGenres(item.id)}
+              variant={selectedGenres.includes(item.id) ? 'secondary' : 'primary'}
             >
               {item.name}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -81,15 +80,9 @@ const InfiniteLoadingList = ({ url, mediaType }: Props) => {
       </div>
       {data && !isLoadedAll ? (
         <div className="w-full flex justify-center mt-12">
-          <button
-            className={`flex relative items-center bg-yellow-500 hover:bg-yellow-400 border border-yellow-400 focus:outline-none py-3 px-10 rounded-lg text-gray-800 mx-auto ${
-              isLoadingMore ? 'cursor-not-allowed' : ''
-            }`}
-            onClick={() => setSize(size + 1)}
-          >
-            {isLoadingMore ? <Icon name="spinner" className="animate-spin w-4 mb-1 h-5 absolute right-0 mr-4" /> : ''}
+          <Button variant="secondary" size="lg" loading={isLoadingMore} onClick={() => setSize(size + 1)}>
             Load More
-          </button>
+          </Button>
         </div>
       ) : null}
     </>
