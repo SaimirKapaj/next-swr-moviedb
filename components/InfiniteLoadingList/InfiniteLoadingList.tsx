@@ -79,7 +79,7 @@ const InfiniteLoadingList = ({ url, mediaType }: Props) => {
             ))}
       </div>
       {data && !isLoadedAll ? (
-        <div className="w-full flex justify-center mt-12">
+        <div className="w-full flex justify-center mt-12 mb-6">
           <Button variant="secondary" size="lg" loading={isLoadingMore} onClick={() => setSize(size + 1)}>
             Load More
           </Button>
