@@ -94,7 +94,7 @@ const SearchBar = () => {
               Close
             </button>
           </div>
-          {!!searchHistory.length ? (
+          {searchHistory.length > 0 ? (
             <div className="mt-3">
               <span className="ml-1">Recent</span>
               <div className="flex flex-wrap w-full">
