@@ -3,14 +3,14 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import useSWR from 'swr';
 
-import { GenresContext } from 'context/genres';
+import { useGenres } from 'context/genres';
 import { MediaType, Results } from 'types';
 import Layout from 'components/Layout';
 import MovieItem from 'components/MovieItem';
 import LoadingMoviePlaceholder from 'components/loading-placeholders/LoadingMoviePlaceholder';
 
 const SearchPage = () => {
-  const { movieGenres, tvGenres } = React.useContext(GenresContext);
+  const { movieGenres, tvGenres } = useGenres();
   const { query } = useRouter();
   const { data } = useSWR<Results>(`search/multi?query=${query.q}`);
 

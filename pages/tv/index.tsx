@@ -1,13 +1,12 @@
-import React from 'react';
 import useSWR from 'swr';
 
-import { GenresContext } from 'context/genres';
+import { useGenres } from 'context/genres';
 import Layout from 'components/Layout';
 import MovieListScrolling from 'components/MovieListScrolling';
 import TitleWithMoreButton from 'components/TitleWithMoreButton';
 
 const TvPage = () => {
-  const { tvGenres } = React.useContext(GenresContext);
+  const { tvGenres } = useGenres();
   const { data: airingToday } = useSWR(`tv/airing_today`);
   const { data: onTheAir } = useSWR(`tv/on_the_air`);
   const { data: popular } = useSWR(`tv/popular`);

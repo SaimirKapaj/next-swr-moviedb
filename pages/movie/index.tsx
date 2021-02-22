@@ -1,13 +1,12 @@
-import React from 'react';
 import useSWR from 'swr';
 
-import { GenresContext } from 'context/genres';
+import { useGenres } from 'context/genres';
 import Layout from 'components/Layout';
 import MovieListScrolling from 'components/MovieListScrolling';
 import TitleWithMoreButton from 'components/TitleWithMoreButton';
 
 const MoviePage = () => {
-  const { movieGenres } = React.useContext(GenresContext);
+  const { movieGenres } = useGenres();
   const { data: nowPlawing } = useSWR(`movie/now_playing`);
   const { data: upcoming } = useSWR(`movie/upcoming`);
   const { data: popular } = useSWR(`movie/popular`);

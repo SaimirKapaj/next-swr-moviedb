@@ -1,15 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { GenresContext } from 'context/genres';
+import { useGenres } from 'context/genres';
 import { useLocalStorage } from 'hooks';
-import { Movie } from 'types';
+import { Movie, MediaType } from 'types';
 import Layout from 'components/Layout';
 import MovieItem from 'components/MovieItem';
 
 const MyListPage = () => {
-  const { movieGenres, tvGenres } = React.useContext(GenresContext);
-  const [myList, setMyList] = useLocalStorage<Movie[]>('myList', []);
+  const { movieGenres, tvGenres } = useGenres();
+  const [myList] = useLocalStorage<Movie[]>('myList', []);
+
+  const genres: { [key in MediaType] } = {
+    movie: movieGenres,
+    tv: tvGenres
+  };
 
   return (
     <Layout>
@@ -23,7 +28,7 @@ const MyListPage = () => {
               <div className="flex-none p-3 w-full sm:w-1/2 lg:w-1/4 xl:w-1/5">
                 <Link href={`/${movie?.media_type}/${movie?.id}`}>
                   <a>
-                    <MovieItem details={movie} genres={movieGenres} />
+                    <MovieItem details={movie} genres={genres[movie?.media_type]} />
                   </a>
                 </Link>
               </div>
