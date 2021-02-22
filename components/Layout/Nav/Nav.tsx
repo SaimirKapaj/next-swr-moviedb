@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import Icon from 'components/Icon';
-import { IconType } from 'components/Icon';
 import { useRouter } from 'next/router';
+
+import Icon, { IconType } from 'components/Icon';
 
 interface NavItem {
   title: string;
