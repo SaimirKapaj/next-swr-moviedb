@@ -32,3 +32,11 @@ export const GenresProvider = ({ children }) => {
     </GenresContext.Provider>
   );
 };
+
+export const useGenres = () => {
+  const context = React.useContext(GenresContext);
+  if (context === undefined) {
+    throw new Error('useGenres must be used within a GenresProvider');
+  }
+  return context;
+};
