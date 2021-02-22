@@ -17,7 +17,9 @@ export const useDetails = (mediaType: MediaType, id: string | string[]) => {
 
   const error = errorMedia || errorMediaCredits;
 
-  return { details, error };
+  const loading = !media || !mediaCredits;
+
+  return { details, loading, error };
 };
 
 export const useInfiniteLoading = (url: string) => {

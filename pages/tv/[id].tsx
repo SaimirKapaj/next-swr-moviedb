@@ -6,7 +6,7 @@ import DetailsPage from 'components/DetailsPage';
 
 const TvDetailsPage = () => {
   const { query } = useRouter();
-  const { details } = useDetails('tv', query.id);
+  const { details, loading } = useDetails('tv', query.id);
 
   const tvDatails = {
     media_type: 'tv',
@@ -15,7 +15,7 @@ const TvDetailsPage = () => {
 
   return (
     <Layout>
-      <DetailsPage details={tvDatails} />
+      <DetailsPage details={tvDatails} loading={loading} />
     </Layout>
   );
 };

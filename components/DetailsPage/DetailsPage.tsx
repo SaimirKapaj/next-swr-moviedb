@@ -6,9 +6,10 @@ import LoadingDetailsPagePlaceholder from 'components/loading-placeholders/Loadi
 
 interface Props {
   details: Details;
+  loading: boolean;
 }
 
-const DetailsPage = ({ details }: Props) => {
+const DetailsPage = ({ details, loading }: Props) => {
   const { isInMyList, addToList } = useMyList(details);
 
   return (
@@ -17,7 +18,7 @@ const DetailsPage = ({ details }: Props) => {
         <ButtonBack />
       </div>
 
-      {details ? (
+      {!loading ? (
         <div className="flex flex-col mt-8 mb-6 overflow-hidden">
           <div className="w-full">
             <div className="relative">
@@ -60,7 +61,7 @@ const DetailsPage = ({ details }: Props) => {
             <h3 className="mt-10 mb-1 font-semibold text-lg">Overview</h3>
             <p>{details?.overview}</p>
 
-            {!!details?.directors?.length ? <h3 className="mt-4 mb-1 font-semibold text-lg">Director</h3> : null}
+            {details?.directors?.length > 0 ? <h3 className="mt-4 mb-1 font-semibold text-lg">Director</h3> : null}
             {details?.directors?.map((director, index) => (
               <span key={index}>
                 {director.name}
